@@ -2,6 +2,7 @@ import json
 import clang.cindex as clang
 clang.Config.set_library_file('/data/data/com.termux/files/usr/lib/libclang.so')
 
+imaginary_file = 'input_src.cpp'
 class CLangAST:
   incl_headers = ['stdint.h']
   
@@ -16,8 +17,8 @@ class CLangAST:
       return
     
     source = self._prefix_includes() + source
-    self.ast = cpp = clang.TranslationUnit.from_source('il2cpp.cpp',
-      unsaved_files = [('il2cpp.cpp', source)])
+    self.ast = cpp = clang.TranslationUnit.from_source(imaginary_file,
+      unsaved_files = [(imaginary_file, source)])
     
   
   @property
