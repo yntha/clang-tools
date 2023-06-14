@@ -14,6 +14,17 @@ This tool will convert all structures in a c/c++ header file into python
 dataclasses. It will also add a class variable to each dataclass called 'format'
 (using a decorator called cxx3py) that can be used as the format string to 
 `struct.unpack()` to parse this struct:
+From input [test.h](samples/test.h):
+```c
+typedef struct Il2CppArraySize
+{
+    Il2CppObject obj;
+    Il2CppArrayBounds *bounds;
+    il2cpp_array_size_t max_length;
+    __attribute__((aligned(8))) void* vector[32];
+} Il2CppArraySize;
+```
+From output [test.py](samples/test.py):
 ```py
 # L1601: struct Il2CppArraySize {...};
 @dataclass
